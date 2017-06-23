@@ -1,0 +1,19 @@
+<div class="container">
+<fieldset><center>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @email.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @email.email %>
+</p>
+
+<%= link_to 'Edit', edit_email_path(@email) %> |
+<%= link_to 'Back', emails_path %>
+</center>
+</fieldset>
+</div>
