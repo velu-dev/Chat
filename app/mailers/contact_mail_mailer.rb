@@ -1,5 +1,5 @@
 class ContactMailMailer < ApplicationMailer
-  default from: "from@example.com"
+  default from: "whiteplaast@gmail.com"
     def sample_email(user)
     @user = user
     mail(to: @user.email, subject: 'Sample Email')

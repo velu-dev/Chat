@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+   <%= favicon_link_tag 'logo1.png' %>
     <title>ChatApp</title>
     <%= csrf_meta_tags %>
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
 </head>
@@ -12,12 +13,17 @@
 <header>
 <div class="container">
 <div class="logo">
-<img src="http://colouringbook.org/Holidays/Xmas/PEACE/peace_peace_dove_icon_christmas_xmas_peace_on_earth_coloring_book_colouring.svg">
-<strong>Group Chat</strong>
+<%=image_tag("logo1.png")%>
+<strong>Chat App</strong>
 </div>
 <div class="menu">
-<a href="#">Home</a>
-<a href=""><%=link_to "Project", user_session_path%></a>
+<% if user_signed_in? %>
+<strong>Welcome
+<%= current_user.name %>
+</strong>
+<% end %>
+<a href="#"><%=link_to "Home", homes_home_path%></a> 
+<a href=""><%=link_to "Enter Chat App", chat_rooms_path%></a>
 <a><%=link_to "Contact", emails_path%></a>
 <a><% if user_signed_in? %>
         <%=link_to 'Log out', destroy_user_session_path, method: :delete %>
@@ -26,11 +32,16 @@
 
       </div>
 </header>
+<div class="container">
     <%= yield %>
-<div class="footer-copyright">
+    </div>
+<div class="footer">
 <div class="container">
 <div class="ftext"><strong>Developed By Velusamy Venkatraman</strong></div>
 </div>
 </div>
   </body>
-</html>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+ </html>

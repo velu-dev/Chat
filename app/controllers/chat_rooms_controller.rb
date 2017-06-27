@@ -1,9 +1,10 @@
 class ChatRoomsController < ApplicationController
 def index
     @chat_rooms ||= ChatRoom.all
+    #byebug
+    @profile=User.all
   end
-
-  def new
+    def new
     @chat_room ||= ChatRoom.new
   end
 

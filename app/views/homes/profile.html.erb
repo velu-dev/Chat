@@ -1,0 +1,33 @@
+<h1>Profile</h1>
+<div class="img">
+<%=image_tag current_user.profile_pic%> 
+</div>
+<div class="detail">
+    <label>Name:</label><%=current_user.fname%><br>
+    <label>Email:</label><%=current_user.email%><br>
+    <label>Gender:</label><%=current_user.gender%><br>
+    <label>Mobile:</label><%=current_user.mobile%><br>
+</div>
+ <div class="edit">
+   <%=link_to "edit", homes_edit_path(current_user)%>
+ </div>
+<style>
+.img{
+	float: left;
+	width: 200px;
+}
+.detail{
+	float: right;
+	width:900px;
+	margin-right: 0;
+	text-align: left;
+}
+label{
+
+	text-align: left;
+}
+	.img img{
+		height: 100px;
+		width:150px;
+	}
+</style>
