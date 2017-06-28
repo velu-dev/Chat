@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-11">
         <p class="card-text">
-          <strong><span class="text-muted"><%=link_to message.user.name, homes_profile_path %></strong> at <%= message.timestamp %> says</span><br>
+          <strong><span class="text-muted"><%=link_to message.user.name, chat_manage_profile_path(message.user.id) %></strong> at <%= message.timestamp %> says</span><br>
           <%= message.body %>
         </p>
       </div>

@@ -1,0 +1,13 @@
+<h1>Chat Room Manager</h1>
+<table>
+<tr><td>Chat Room Name</td>
+<td> Created At </td>
+<td colspan="2">Action</td></tr>
+<%@chat.each do |c|%>
+	<tr><td><%=c.title%></td>
+	<td><%=c.created_at%></td>
+    <td> <%=link_to "Edit", chat_manage_edit_path(c)%></td>
+    <td> <%=link_to "Delete", chat_manage_delete_path(c)%></td></tr>
+
+	<%end%>
+	</table>

@@ -1,6 +1,9 @@
 
 <div class="chat_class">
 <h1>Chat rooms</h1>
+<%if current_user.email=="velusamyvnp@gmail.com"%>
+<%=link_to "View All",  chat_manage_show_path%>
+<%end%>
 
 <p class="lead"><%= link_to 'New chat room', new_chat_room_path, class: 'btn btn-primary' %></p>
 
@@ -17,7 +20,6 @@
 		<td><%= current_user.email %></td></tr>
 	<tr><td><label><b>Profile Pic</b></label></td>
 		<td><%=image_tag current_user.profile_pic.thumb %></td></tr>
-				<td><%=link_to "View Full Detail", homes_profile_path  %></td></tr></table>
-         
+				<td><%=link_to "View Full Detail", homes_profile_path  %></td></tr></table>        
 </div>
 

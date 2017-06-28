@@ -1,0 +1,7 @@
+<h1> </h1>
+<%=text_field :title ,:value=>@chat.title%>
+<%= form_for @chat, :url =>{action: :update} do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'input-control' %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+    <% end %>

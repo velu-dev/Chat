@@ -3,6 +3,9 @@
 <div id="messages" data-chat-room-id="<%= @chat_room.id %>">
   <%= render @chat_room.messages %>
 </div>
+<%if current_user.email=="velusamyvnp@gmail.com"%>
+<%=link_to "Clear Messages",chat_rooms_delete_path(@chat_room.id)%>
+<%end%>
 
 <hr>
 

@@ -23,7 +23,12 @@ def index
    
     @message = Message.new
   end
-
+  def delete
+byebug
+    @chat = ChatRoom.find(params[:format]).messages
+    @chat.destroy
+  end
+  
   private
 
   def chat_room_params

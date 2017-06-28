@@ -1,0 +1,32 @@
+<%=@user.name%>
+<h1>Profile</h1>
+<div class="img">
+<%=image_tag @user.profile_pic%> 
+</div>
+<div class="detail">
+    <label>Name:</label><%=@user.fname%><br>
+    <label>Email:</label><%=@user.email%><br>
+    <label>Gender:</label><%=@user.gender%><br>
+    <label>Mobile:</label><%=@user.mobile%><br>
+</div>
+ 
+<style>
+.img{
+	float: left;
+	width: 200px;
+}
+.detail{
+	float: right;
+	width:900px;
+	margin-right: 0;
+	text-align: left;
+}
+label{
+
+	text-align: left;
+}
+	.img img{
+		height: 100px;
+		width:150px;
+	}
+</style>
