@@ -9,17 +9,17 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <img class="d-block img-fluid" src="http://www.llscanada.org/sites/default/files/National/USA/Image/banner/banner-support-online-chats.jpg" alt="First slide">
+      <img class="d-block img-fluid" src="https://wallpaperscraft.com/image/berlin_germany_building_hdr_58749_1920x1080.jpg" alt="First slide">
       <!--http://svc004.bookeasy.com/images/MARGS/flourish-website-banner3.jpg-->
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://thumb1.shutterstock.com/display_pic_with_logo/996356/575263198/stock-vector-a-word-cloud-of-chat-room-related-items-575263198.jpg" alt="Second slide">
+      <img class="d-block img-fluid" src="https://wallpaperscraft.com/image/berlin_germany_night_58513_1920x1080.jpg" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="https://us.123rf.com/450wm/masterart/masterart1503/masterart150300003/37395512-a-word-cloud-of-chat-room-related-items.jpg?ver=6)" alt="Third slide">
+      <img class="d-block img-fluid" src="https://wallpaperscraft.com/image/berlin_city_roads_houses_view_from_above_81300_1920x1080.jpg" alt="Third slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block img-fluid" src="http://images.clipartpanda.com/airplane-with-banner-vector-8551554-plane-with-message-area-set.jpg" alt="Third slide">
+      <img class="d-block img-fluid" src="https://wallpaperscraft.com/image/berlin_germany_night_buildings_street_58511_1920x1080.jpg" alt="Third slide">
     </div><!--style="width: 100%;height:500px;"-->
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -38,12 +38,40 @@
     height:400px;
   }
 </style>
-
+<div class="container">
 <div class="profile">
-<%=image_tag current_user.profile_pic%>
-<div><label>Name:</label>
-<div><%=current_user.name%>
+<%if current_user.profile_pic.present?%>
+<%=image_tag current_user.profile_pic, :class=>"profile"%>
+<%elsif current_user.gender =="Male"%>
+<%=image_tag 'male.png', :class=>"profile"%>
+<%else%>
+<%=image_tag 'female.png', :class=>"profile"%>
+ 
+<style>
+  .profile{
+    border-radius: 25px;
+  }
+</style>
+<%end%>
+<div>
+  <label><strong>Name:</strong></label>&nbsp&nbsp<%=current_user.fname%>
 </div>
+<div>
+  <label><strong>Email-ID:</strong></label>&nbsp&nbsp<i>&nbsp<%=current_user.email%></i>
+</div>
+<div>
+  <label><strong>Mobile:</strong></label>&nbsp&nbsp<%=current_user.mobile%>
+</div>
+<br>
+<%=link_to "View Profile", homes_profile_path%>
+<%=link_to "Enter Chat Room", chat_rooms_path%>
+
 </div>
 </div>
 
+<style>
+  .profile{
+    height:100px;
+  }
+
+</style>

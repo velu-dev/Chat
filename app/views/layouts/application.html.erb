@@ -1,47 +1,80 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <%= favicon_link_tag 'logo1.png' %>
-    <title>ChatApp</title>
-    <%= csrf_meta_tags %>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <%= favicon_link_tag 'logo1.png' %>
+  <title>ChatApp</title>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
 </head>
 
-  <body>
-<header>
-<div class="container">
-<div class="logo">
-<%=image_tag("logo1.png")%>
-<strong>Chat App</strong>
-</div>
-<div class="menu">
-<% if user_signed_in? %>
-<strong>Welcome
-<%= current_user.name %>
-</strong>
-<% end %>
-<a href="#"><%=link_to "Home", homes_home_path%></a> 
-<a href=""><%=link_to "Enter Chat App", chat_rooms_path%></a>
-<a><%=link_to "Contact", emails_path%></a>
-<a><% if user_signed_in? %>
-        <%=link_to 'Log out', destroy_user_session_path, method: :delete %>
-<% end %></a>
-</div>
+<body>
 
-      </div>
-</header>
 <div class="container">
-    <%= yield %>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="logo">
+  <%=image_tag("logo1.png")%></div><strong style="width: 100px">Chat App</strong>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active ">
+        <%=link_to "Home", homes_home_path%><span class="sr-only">(current)</span>
+      </li>
+      <li class="nav-item">
+        <%=link_to "Enter Chat App", chat_rooms_path%>
+      </li>
+      <li class="nav-item">
+        <%=link_to "Contact", emails_path%>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+        <div class="dropdown-menu">
+          <%=link_to "View Profile", homes_profile_path%><br>
+          <% if user_signed_in? %>
+        <%=link_to 'Log out', destroy_user_session_path, method: :delete %>
+      <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>
+  <!--div class="container">
+    <div class="logo">
+      <%=image_tag("logo1.png")%>
+      <strong>Chat App</strong>
     </div>
-<div class="footer">
-<div class="container">
-<div class="ftext"><strong>Developed By Velusamy Venkatraman</strong></div>
-</div>
-</div>
+    <div class="menu">
+      <% if user_signed_in? %>
+      <strong>Welcome <%= current_user.fname %></strong>
+      <% end %>
+      <%=link_to "Home", homes_home_path%>
+      <a href=""><%=link_to "Enter Chat App", chat_rooms_path%></a>
+      <a><%=link_to "Contact", emails_path%></a>
+      <a><% if user_signed_in? %>
+        <%=link_to 'Log out', destroy_user_session_path, method: :delete %>
+      <% end %></a>
+    </div>
+
+  </div-->
+
+  
+    <%= yield %>
+  
+  <!--div class="footer">
+  <div class="container">
+    <div class="ftext">
+      <strong>Developed By Velusamy Venkatraman</strong>
+    </div>
+  </div>
+  </div-->
   </body>
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
- </html>
+</html>

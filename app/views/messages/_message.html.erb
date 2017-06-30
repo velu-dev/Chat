@@ -2,11 +2,14 @@
   <div class="card-block">
     <div class="row">
       <div class="col-md-1">
-       <%=image_tag message.user.profile_pic.thumb%>
+<%#=image_tag @profile_pic, :class=>"profile"%>
+       <%=image_tag message.user.profile_pic.thumb, :style=> 'radius:30px;'%>
       </div>
       <div class="col-md-11">
         <p class="card-text">
-          <strong><span class="text-muted"><%=link_to message.user.name, chat_manage_profile_path(message.user.id) %></strong> at <%= message.timestamp %> says</span><br>
+          <strong>
+          <span class="text-muted">
+  <%=link_to message.user.name, chat_manage_profile_path(message.user.id) %></strong>at<%= message.timestamp%> says</span><br>
           <%= message.body %>
         </p>
       </div>

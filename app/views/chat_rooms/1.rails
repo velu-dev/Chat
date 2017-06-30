@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-1">
+      <%if message.user.profile_pic.present?%>
+<%=image_tag message.user.profile_pic.thumb, :class=>"profile"%>
+<%elsif current_user.gender =="Male"%>
+<%=image_tag 'male.png', :class=>"profile"%>
+<%else%>
+<%=image_tag 'female.png', :class=>"profile"%>
+<%end%>
+       <%#=image_tag message.user.profile_pic.thumb%>
+      </div>
+      <div class="col-md-11">
+        <p class="card-text">
+          <strong><span class="text-muted"><%=link_to message.user.name, chat_manage_profile_path(message.user.id) %></strong> at <%= message.timestamp %>பேசியது</span><br>
+          <%= message.body %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .profile{
+    height: 50px;
+    width:50px;
+  }
+</style>

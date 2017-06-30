@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'chat_manage/delete'
 
   get 'chat_manage/profile'
+  post 'chat_manage/create'
   
   resources :emails
 

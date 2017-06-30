@@ -1,6 +1,6 @@
-
+<div class="container">
 <div class="chat_class">
-<h1>Chat rooms</h1>
+<h3>Chat rooms</h3>
 <%if current_user.email=="velusamyvnp@gmail.com"%>
 <%=link_to "View All",  chat_manage_show_path%>
 <%end%>
@@ -10,9 +10,12 @@
 <ul>
   <%= render @chat_rooms %>
   </ul>
+  
+
 </div>
 <div class="profile_class">
-	<strong><p>User Profile</p></strong>
+<div class="a">
+	<strong><h3>User Profile</h3></strong>
 	<table>
 	<tr><td><label><b>Name</b></label></td>
 		<td><%=current_user.fname %></td></tr>
@@ -20,6 +23,26 @@
 		<td><%= current_user.email %></td></tr>
 	<tr><td><label><b>Profile Pic</b></label></td>
 		<td><%=image_tag current_user.profile_pic.thumb %></td></tr>
-				<td><%=link_to "View Full Detail", homes_profile_path  %></td></tr></table>        
+				<td><%=link_to "View Full Detail", homes_profile_path  %></td></tr></table> 
+</div>       
 </div>
+</div>
+<style>
+	.chat_class{
+		background-color: #fffff;
+		float:left;
+		width:400px;
+		height:100%;
+		text-align: center;
+		margin-top: 17px;
+	}
+	.profile_class{
+		float: right;
+		width:700px;
+		background-color: #fffff;
+	}
+	.a{
+		
+	}
+</style>
 

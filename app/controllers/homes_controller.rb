@@ -5,17 +5,18 @@ class HomesController < ApplicationController
   def contact
   end
   def edit
-  	@user= User.find(params[:format])
+  	@user ||= User.find(params[:format])
   	
   end
   def update
-  	byebug
-    @user = User.find(edit_params)
-    @user.update
+  
+    @user ||= User.find(current_user.id)
+    @user.update(edit_params)
+    redirect_to homes_profile_path
   end
   private
   def edit_params
-   params.permit!
+   params.require(:user).permit!
   end
 
 end

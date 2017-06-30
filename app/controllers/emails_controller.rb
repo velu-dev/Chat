@@ -4,7 +4,7 @@ class EmailsController < ApplicationController
   # GET /emails
   # GET /emails.json
   def index
-    @emails = Email.all
+    @emails ||= Email.all
   end
 
   # GET /emails/1
@@ -14,7 +14,7 @@ class EmailsController < ApplicationController
 
   # GET /emails/new
   def new
-    @email = Email.new
+    @email ||= Email.new
   end
 
   # GET /emails/1/edit
@@ -24,7 +24,7 @@ class EmailsController < ApplicationController
   # POST /emails
   # POST /emails.json
   def create
-    @email = Email.new(email_params)
+    @email ||= Email.new(email_params)
 
     respond_to do |format|
       if @email.save
@@ -65,7 +65,7 @@ class EmailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_email
-      @email = Email.find(params[:id])
+      @email ||= Email.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

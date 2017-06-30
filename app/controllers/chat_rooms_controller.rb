@@ -20,13 +20,12 @@ def index
 
   def show
     @chat_room ||= ChatRoom.includes(:messages).find_by(id: params[:id])
-   
+    #@profile_pic = User.check_pic(current_user)
     @message = Message.new
   end
   def delete
-byebug
-    @chat = ChatRoom.find(params[:format]).messages
-    @chat.destroy
+    @chat1 = ChatRoom.find(params[:format]).messages
+    @chat1.destroy
   end
   
   private
