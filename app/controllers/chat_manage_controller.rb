@@ -23,14 +23,15 @@
 	end
 	def profile
 		@user ||= User.find(params[:format])
-		@msg ||=User.find(params[:format]).msg
-		@new = Msg.new
+		@msg ||=Msg.where(to_id: params[:format])#User.find(params[:format]).msgs#.where(to_id: 7)#Msg.find_by(to_id: params[:format]).user#User.find(params[:format]).msg
+		@message = Msg.new
 	end
 
 	def create
-		@new = Msg.new(new_params)
-		@new.save
-		redirect_to chat_manage_profile_path(current_user.id)
+		@message = Msg.new(new_params)
+		if @message.save
+			redirect_to chat_manage_profile_path(params[:msg][:to_id])
+		end
 	end
 	private
 	def new_params
