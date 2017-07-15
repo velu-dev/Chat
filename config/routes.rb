@@ -31,4 +31,12 @@ get 'chat_rooms/delete'
 
   root 'chat_rooms#index'
 
+
+namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :chat_rooms
+      resources :homes
+    end
+  end
+
 end

@@ -1,6 +1,8 @@
 	class ChatManageController < ApplicationController
 	def show
 		@chat ||= ChatRoom.all
+	
+		render json: @chat
 	end
 	def edit
 		@chat ||= ChatRoom.find(params[:format])
