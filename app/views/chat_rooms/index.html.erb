@@ -1,6 +1,7 @@
 <div class="container">
 <div class="chat_class">
 <h3>Chat rooms</h3>
+<%=current_user.id%>
 <%if current_user.email=="velusamyvnp@gmail.com"%>
 <%=link_to "View All",  chat_manage_show_path%>
 <%end%>

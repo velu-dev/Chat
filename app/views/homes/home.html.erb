@@ -53,6 +53,7 @@
   }
 </style>
 <%end%>
+
 <div>
   <label><strong>Name:</strong></label>&nbsp&nbsp<%=current_user.fname%>
 </div>
@@ -65,13 +66,31 @@
 <br>
 <%=link_to "View Profile", homes_profile_path%>
 <%=link_to "Enter Chat Room", chat_rooms_path%>
-
+</div>
+<div class="chat">
+    <%@user.map do|ii|%>
+    <%=link_to ii.email, chat_manage_profile_path(ii.id)%><font id="chat">.</font>
+    <%end%>
 </div>
 </div>
-
+<!-- <%#=link_to message.user.name, chat_manage_profile_path(message.user.id) %></strong>at<%#= message.timestamp%> says</span><b -->
 <style>
+.nn{
+  float: left;
+}
+.mmm{
+  float: right;
+}
   .profile{
     height:100px;
+  }
+  .chat{
+    float: right;
+  }
+  #chat{
+    color: green;
+    font-size: 80px;
+    border-radius: 20px;
   }
 
 </style>

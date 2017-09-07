@@ -1,5 +1,6 @@
 class HomesController < ApplicationController
   def home
+    @user =  User.all
   end
 
   def contact

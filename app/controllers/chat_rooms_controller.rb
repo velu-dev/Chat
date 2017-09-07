@@ -2,7 +2,7 @@ class ChatRoomsController < ApplicationController
 def index
     @chat_rooms ||= ChatRoom.all
     @profile=User.all
-    render json:@profile
+#    render json:@profile
   end
     def new
     @chat_room ||= ChatRoom.new
