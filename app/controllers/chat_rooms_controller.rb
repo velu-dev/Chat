@@ -2,7 +2,7 @@ class ChatRoomsController < ApplicationController
 def index
     @chat_rooms ||= ChatRoom.all
     @profile=User.all
-    render json:@profile
+#    render json:@profile
   end
     def new
     @chat_room ||= ChatRoom.new
@@ -25,7 +25,7 @@ def index
   end
   def delete
     @chat1 = ChatRoom.find(params[:format]).messages
-    @chat1.destroy
+    @chat1.delete_all
   end
   
   private

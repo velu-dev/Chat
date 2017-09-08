@@ -20,8 +20,12 @@ Rails.application.routes.draw do
 
   get 'chat_manage/profile'
   post 'chat_manage/create'
-  
+  get 'homes/logout'
   resources :emails
+
+  # get 'users/login'
+  # get 'users/logout'
+  get "resource/sign_in"
 
   devise_for :users
 get 'chat_rooms/delete'
@@ -32,11 +36,11 @@ get 'chat_rooms/delete'
   root 'chat_rooms#index'
 
 
-namespace :api, defaults: {format: 'json'} do
-    namespace :v1 do
-      resources :chat_rooms
-      resources :homes
-    end
-  end
+#namespace :api, defaults: {format: 'json'} do
+#    namespace :v1 do
+#      resources :chat_rooms
+#      resources :homes
+# #   end
+#  end
 
 end

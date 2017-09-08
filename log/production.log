@@ -1,0 +1,187 @@
+D, [2017-08-05T09:42:24.984940 #9986] DEBUG -- :   [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+D, [2017-08-05T09:42:24.989104 #9986] DEBUG -- :   [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+D, [2017-08-05T09:42:25.044120 #9986] DEBUG -- :   [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+D, [2017-08-05T09:42:25.083436 #9986] DEBUG -- :   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+I, [2017-08-05T09:42:25.083720 #9986]  INFO -- : Migrating to DeviseCreateUsers (20170621091043)
+D, [2017-08-05T09:42:25.097119 #9986] DEBUG -- :   [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+D, [2017-08-05T09:42:25.100834 #9986] DEBUG -- :   [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+D, [2017-08-05T09:42:25.113651 #9986] DEBUG -- :   [1m[35m (10.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+D, [2017-08-05T09:42:25.115735 #9986] DEBUG -- :   [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+D, [2017-08-05T09:42:25.116711 #9986] DEBUG -- :   [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+D, [2017-08-05T09:42:25.123916 #9986] DEBUG -- :   [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170621091043"]]
+D, [2017-08-05T09:42:25.127561 #9986] DEBUG -- :   [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+I, [2017-08-05T09:42:25.127771 #9986]  INFO -- : Migrating to CreateChatRooms (20170621091133)
+D, [2017-08-05T09:42:25.139322 #9986] DEBUG -- :   [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+D, [2017-08-05T09:42:25.142851 #9986] DEBUG -- :   [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "chat_rooms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_fb091736d8"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+D, [2017-08-05T09:42:25.144530 #9986] DEBUG -- :   [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "index_chat_rooms_on_user_id" ON "chat_rooms" ("user_id")[0m
+D, [2017-08-05T09:42:25.147589 #9986] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170621091133"]]
+D, [2017-08-05T09:42:25.150221 #9986] DEBUG -- :   [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+I, [2017-08-05T09:54:38.365121 #11249]  INFO -- : [68ac5b50-f26a-4daf-b951-a1a5edf7b6ac] Processing by Devise::SessionsController#new as HTML
+I, [2017-08-05T09:54:38.436417 #11249]  INFO -- : [68ac5b50-f26a-4daf-b951-a1a5edf7b6ac]   Rendering devise/sessions/new.html.erb within layouts/application
+I, [2017-08-05T09:54:38.450961 #11249]  INFO -- : [68ac5b50-f26a-4daf-b951-a1a5edf7b6ac]   Rendered devise/shared/_links.html.erb (3.7ms)
+I, [2017-08-05T09:54:38.451245 #11249]  INFO -- : [68ac5b50-f26a-4daf-b951-a1a5edf7b6ac]   Rendered devise/sessions/new.html.erb within layouts/application (14.5ms)
+I, [2017-08-05T09:54:38.457909 #11249]  INFO -- : [68ac5b50-f26a-4daf-b951-a1a5edf7b6ac] Completed 200 OK in 92ms (Views: 28.1ms | ActiveRecord: 2.9ms)
+I, [2017-08-05T09:54:44.867364 #11249]  INFO -- : [032fa8ba-3029-4bb8-8bf0-3099bf1e75c0] Started POST "/users/sign_in" for 192.168.1.102 at 2017-08-05 09:54:44 +0530
+I, [2017-08-05T09:54:44.869441 #11249]  INFO -- : [032fa8ba-3029-4bb8-8bf0-3099bf1e75c0] Processing by Devise::SessionsController#create as HTML
+I, [2017-08-05T09:54:44.869650 #11249]  INFO -- : [032fa8ba-3029-4bb8-8bf0-3099bf1e75c0]   Parameters: {"utf8"=>"✓", "authenticity_token"=>"OrYmA1vL6Vaob74cgtiGYtbcokgD8Gm/21GV6iMW0eQMTBFCRwJWr+KXlbKvbv/PO44tutW7+ncHQbfqTuVNsg==", "user"=>{"email"=>"velusamyvnp@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+D, [2017-08-05T09:54:44.876696 #11249] DEBUG -- : [032fa8ba-3029-4bb8-8bf0-3099bf1e75c0]   [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "velusamyvnp@gmail.com"], ["LIMIT", 1]]
+D, [2017-08-05T09:54:45.239901 #11249] DEBUG -- : [032fa8ba-3029-4bb8-8bf0-3099bf1e75c0]   [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+D, [2017-08-05T09:54:45.245962 #11249] DEBUG -- : [032fa8ba-3029-4bb8-8bf0-3099bf1e75c0]   [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["current_sign_in_at", "2017-08-05 04:24:45.238174"], ["last_sign_in_at", "2017-08-05 04:19:43.353451"], ["sign_in_count", 3], ["updated_at", "2017-08-05 04:24:45.241606"], ["id", 1]]
+D, [2017-08-05T09:54:45.251519 #11249] DEBUG -- : [032fa8ba-3029-4bb8-8bf0-3099bf1e75c0]   [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+I, [2017-08-05T09:54:45.269009 #11249]  INFO -- : [032fa8ba-3029-4bb8-8bf0-3099bf1e75c0] Redirected to http://192.168.1.74:3000/homes/home
+I, [2017-08-05T09:54:45.269503 #11249]  INFO -- : [032fa8ba-3029-4bb8-8bf0-3099bf1e75c0] Completed 302 Found in 400ms (ActiveRecord: 4.5ms)
+I, [2017-08-05T09:54:45.340946 #11249]  INFO -- : [7b00e678-ed3d-4bde-adfe-36c4f87c18a9] Started GET "/homes/home" for 192.168.1.102 at 2017-08-05 09:54:45 +0530
+I, [2017-08-05T09:54:45.344134 #11249]  INFO -- : [7b00e678-ed3d-4bde-adfe-36c4f87c18a9] Processing by HomesController#home as HTML
+D, [2017-08-05T09:54:45.348007 #11249] DEBUG -- : [7b00e678-ed3d-4bde-adfe-36c4f87c18a9]   [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+I, [2017-08-05T09:54:45.352841 #11249]  INFO -- : [7b00e678-ed3d-4bde-adfe-36c4f87c18a9]   Rendering homes/home.html.erb within layouts/application
+I, [2017-08-05T09:54:45.356185 #11249]  INFO -- : [7b00e678-ed3d-4bde-adfe-36c4f87c18a9]   Rendered homes/home.html.erb within layouts/application (3.1ms)
+I, [2017-08-05T09:54:45.359411 #11249]  INFO -- : [7b00e678-ed3d-4bde-adfe-36c4f87c18a9] Completed 200 OK in 15ms (Views: 9.1ms | ActiveRecord: 1.0ms)
+I, [2017-08-05T09:54:47.980991 #11249]  INFO -- : [261f778e-3e10-472d-9a8c-13a3220846a8] Started GET "/chat_rooms" for 192.168.1.102 at 2017-08-05 09:54:47 +0530
+I, [2017-08-05T09:54:47.983048 #11249]  INFO -- : [261f778e-3e10-472d-9a8c-13a3220846a8] Processing by ChatRoomsController#index as HTML
+D, [2017-08-05T09:54:47.986872 #11249] DEBUG -- : [261f778e-3e10-472d-9a8c-13a3220846a8]   [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+I, [2017-08-05T09:54:47.992632 #11249]  INFO -- : [261f778e-3e10-472d-9a8c-13a3220846a8]   Rendering chat_rooms/index.html.erb within layouts/application
+D, [2017-08-05T09:54:47.996083 #11249] DEBUG -- : [261f778e-3e10-472d-9a8c-13a3220846a8]   [1m[36mChatRoom Load (0.4ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms"[0m
+I, [2017-08-05T09:54:48.015123 #11249]  INFO -- : [261f778e-3e10-472d-9a8c-13a3220846a8]   Rendered collection of chat_rooms/_chat_room.html.erb [1 times] (1.6ms)
+I, [2017-08-05T09:54:48.016273 #11249]  INFO -- : [261f778e-3e10-472d-9a8c-13a3220846a8]   Rendered chat_rooms/index.html.erb within layouts/application (23.4ms)
+I, [2017-08-05T09:54:48.019514 #11249]  INFO -- : [261f778e-3e10-472d-9a8c-13a3220846a8] Completed 200 OK in 36ms (Views: 27.8ms | ActiveRecord: 2.5ms)
+I, [2017-08-05T09:54:50.991714 #11249]  INFO -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21] Started GET "/chat_rooms/1" for 192.168.1.102 at 2017-08-05 09:54:50 +0530
+I, [2017-08-05T09:54:50.994360 #11249]  INFO -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21] Processing by ChatRoomsController#show as HTML
+I, [2017-08-05T09:54:50.994466 #11249]  INFO -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21]   Parameters: {"id"=>"1"}
+D, [2017-08-05T09:54:50.996700 #11249] DEBUG -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21]   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+D, [2017-08-05T09:54:50.998201 #11249] DEBUG -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21]   [1m[36mChatRoom Load (0.2ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+D, [2017-08-05T09:54:51.011442 #11249] DEBUG -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21]   [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."chat_room_id" = 1[0m
+I, [2017-08-05T09:54:51.022375 #11249]  INFO -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21]   Rendering chat_rooms/show.html.erb within layouts/application
+I, [2017-08-05T09:54:51.023880 #11249]  INFO -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21]   Rendered collection of templates [0 times] (0.0ms)
+I, [2017-08-05T09:54:51.026623 #11249]  INFO -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21]   Rendered chat_rooms/show.html.erb within layouts/application (4.1ms)
+I, [2017-08-05T09:54:51.028428 #11249]  INFO -- : [b81bb55f-70d8-4c9c-9403-ca8a7ca57d21] Completed 200 OK in 34ms (Views: 6.4ms | ActiveRecord: 2.0ms)
+I, [2017-08-05T09:54:56.126058 #11249]  INFO -- : [25ce41fb-bad1-4807-87c0-cc6e1784f1d3] Started POST "/chat_rooms/1" for 192.168.1.102 at 2017-08-05 09:54:56 +0530
+F, [2017-08-05T09:54:56.128157 #11249] FATAL -- : [25ce41fb-bad1-4807-87c0-cc6e1784f1d3]   
+F, [2017-08-05T09:54:56.128248 #11249] FATAL -- : [25ce41fb-bad1-4807-87c0-cc6e1784f1d3] ActionController::RoutingError (No route matches [POST] "/chat_rooms/1"):
+F, [2017-08-05T09:54:56.128288 #11249] FATAL -- : [25ce41fb-bad1-4807-87c0-cc6e1784f1d3]   
+F, [2017-08-05T09:54:56.128340 #11249] FATAL -- : [25ce41fb-bad1-4807-87c0-cc6e1784f1d3] actionpack (5.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] actionpack (5.1.3) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] railties (5.1.3) lib/rails/rack/logger.rb:36:in `call_app'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] railties (5.1.3) lib/rails/rack/logger.rb:24:in `block in call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] activesupport (5.1.3) lib/active_support/tagged_logging.rb:26:in `tagged'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `tagged'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] railties (5.1.3) lib/rails/rack/logger.rb:24:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] actionpack (5.1.3) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] actionpack (5.1.3) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] activesupport (5.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] actionpack (5.1.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] actionpack (5.1.3) lib/action_dispatch/middleware/static.rb:125:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] railties (5.1.3) lib/rails/engine.rb:522:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+[25ce41fb-bad1-4807-87c0-cc6e1784f1d3] puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+I, [2017-08-05T10:16:33.359915 #13212]  INFO -- : [f7c08e37-73ba-4796-ada3-5919f72780f7] Started POST "/chat_rooms/1" for 192.168.1.102 at 2017-08-05 10:16:33 +0530
+F, [2017-08-05T10:16:33.399375 #13212] FATAL -- : [f7c08e37-73ba-4796-ada3-5919f72780f7]   
+F, [2017-08-05T10:16:33.399693 #13212] FATAL -- : [f7c08e37-73ba-4796-ada3-5919f72780f7] ActionController::RoutingError (No route matches [POST] "/chat_rooms/1"):
+F, [2017-08-05T10:16:33.399814 #13212] FATAL -- : [f7c08e37-73ba-4796-ada3-5919f72780f7]   
+F, [2017-08-05T10:16:33.399949 #13212] FATAL -- : [f7c08e37-73ba-4796-ada3-5919f72780f7] actionpack (5.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] actionpack (5.1.3) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] railties (5.1.3) lib/rails/rack/logger.rb:36:in `call_app'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] railties (5.1.3) lib/rails/rack/logger.rb:24:in `block in call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] activesupport (5.1.3) lib/active_support/tagged_logging.rb:26:in `tagged'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `tagged'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] railties (5.1.3) lib/rails/rack/logger.rb:24:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] actionpack (5.1.3) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] actionpack (5.1.3) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] activesupport (5.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] actionpack (5.1.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] actionpack (5.1.3) lib/action_dispatch/middleware/static.rb:125:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] railties (5.1.3) lib/rails/engine.rb:522:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+[f7c08e37-73ba-4796-ada3-5919f72780f7] puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+I, [2017-08-05T10:16:37.302814 #13212]  INFO -- : [f8e5f214-671f-4534-a391-281372910319] Started GET "/chat_rooms/1" for 192.168.1.102 at 2017-08-05 10:16:37 +0530
+I, [2017-08-05T10:16:37.306422 #13212]  INFO -- : [f8e5f214-671f-4534-a391-281372910319] Processing by ChatRoomsController#show as HTML
+I, [2017-08-05T10:16:37.306558 #13212]  INFO -- : [f8e5f214-671f-4534-a391-281372910319]   Parameters: {"id"=>"1"}
+I, [2017-08-05T10:16:37.317183 #13212]  INFO -- : [f8e5f214-671f-4534-a391-281372910319] Completed 401 Unauthorized in 10ms
+I, [2017-08-05T10:16:37.378804 #13212]  INFO -- : [4729fc41-1286-4a2d-8e75-b230e0c1f8ec] Started GET "/users/sign_in" for 192.168.1.102 at 2017-08-05 10:16:37 +0530
+I, [2017-08-05T10:16:37.382765 #13212]  INFO -- : [4729fc41-1286-4a2d-8e75-b230e0c1f8ec] Processing by Devise::SessionsController#new as HTML
+I, [2017-08-05T10:16:37.478157 #13212]  INFO -- : [4729fc41-1286-4a2d-8e75-b230e0c1f8ec]   Rendering devise/sessions/new.html.erb within layouts/application
+I, [2017-08-05T10:16:37.493713 #13212]  INFO -- : [4729fc41-1286-4a2d-8e75-b230e0c1f8ec]   Rendered devise/shared/_links.html.erb (3.5ms)
+I, [2017-08-05T10:16:37.494026 #13212]  INFO -- : [4729fc41-1286-4a2d-8e75-b230e0c1f8ec]   Rendered devise/sessions/new.html.erb within layouts/application (15.6ms)
+I, [2017-08-05T10:16:37.500891 #13212]  INFO -- : [4729fc41-1286-4a2d-8e75-b230e0c1f8ec] Completed 200 OK in 118ms (Views: 41.3ms | ActiveRecord: 3.5ms)
+I, [2017-08-05T10:16:40.931262 #13212]  INFO -- : [14196ef6-b972-4a87-86b5-f77086637ee0] Started POST "/users/sign_in" for 192.168.1.102 at 2017-08-05 10:16:40 +0530
+I, [2017-08-05T10:16:40.933901 #13212]  INFO -- : [14196ef6-b972-4a87-86b5-f77086637ee0] Processing by Devise::SessionsController#create as HTML
+I, [2017-08-05T10:16:40.934188 #13212]  INFO -- : [14196ef6-b972-4a87-86b5-f77086637ee0]   Parameters: {"utf8"=>"✓", "authenticity_token"=>"DpW7xpEyjYmmOptGnn/QRSWPjPFJz0JohIJSjkKbzET+E4L8dwiiK4bLra29eXZ2O19rIURLm01tobwotihWpw==", "user"=>{"email"=>"velusamyvnp@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+D, [2017-08-05T10:16:40.943109 #13212] DEBUG -- : [14196ef6-b972-4a87-86b5-f77086637ee0]   [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "velusamyvnp@gmail.com"], ["LIMIT", 1]]
+D, [2017-08-05T10:16:41.330909 #13212] DEBUG -- : [14196ef6-b972-4a87-86b5-f77086637ee0]   [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+D, [2017-08-05T10:16:41.339112 #13212] DEBUG -- : [14196ef6-b972-4a87-86b5-f77086637ee0]   [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["current_sign_in_at", "2017-08-05 04:46:41.328918"], ["last_sign_in_at", "2017-08-05 04:24:45.238174"], ["sign_in_count", 4], ["updated_at", "2017-08-05 04:46:41.332943"], ["id", 1]]
+D, [2017-08-05T10:16:41.347463 #13212] DEBUG -- : [14196ef6-b972-4a87-86b5-f77086637ee0]   [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+I, [2017-08-05T10:16:41.358954 #13212]  INFO -- : [14196ef6-b972-4a87-86b5-f77086637ee0] Redirected to http://192.168.1.74:3000/homes/home
+I, [2017-08-05T10:16:41.359640 #13212]  INFO -- : [14196ef6-b972-4a87-86b5-f77086637ee0] Completed 302 Found in 425ms (ActiveRecord: 6.8ms)
+I, [2017-08-05T10:16:41.396253 #13212]  INFO -- : [1bb7c69e-e1a6-403c-8c24-8b55d0eb860a] Started GET "/homes/home" for 192.168.1.102 at 2017-08-05 10:16:41 +0530
+I, [2017-08-05T10:16:41.400267 #13212]  INFO -- : [1bb7c69e-e1a6-403c-8c24-8b55d0eb860a] Processing by HomesController#home as HTML
+D, [2017-08-05T10:16:41.404194 #13212] DEBUG -- : [1bb7c69e-e1a6-403c-8c24-8b55d0eb860a]   [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+I, [2017-08-05T10:16:41.410764 #13212]  INFO -- : [1bb7c69e-e1a6-403c-8c24-8b55d0eb860a]   Rendering homes/home.html.erb within layouts/application
+I, [2017-08-05T10:16:41.415432 #13212]  INFO -- : [1bb7c69e-e1a6-403c-8c24-8b55d0eb860a]   Rendered homes/home.html.erb within layouts/application (4.3ms)
+I, [2017-08-05T10:16:41.419930 #13212]  INFO -- : [1bb7c69e-e1a6-403c-8c24-8b55d0eb860a] Completed 200 OK in 19ms (Views: 12.7ms | ActiveRecord: 0.7ms)
+I, [2017-08-05T10:16:44.109094 #13212]  INFO -- : [c82bbc11-5909-4688-b23c-10efed7f56cf] Started GET "/chat_rooms" for 192.168.1.102 at 2017-08-05 10:16:44 +0530
+I, [2017-08-05T10:16:44.112122 #13212]  INFO -- : [c82bbc11-5909-4688-b23c-10efed7f56cf] Processing by ChatRoomsController#index as HTML
+D, [2017-08-05T10:16:44.116758 #13212] DEBUG -- : [c82bbc11-5909-4688-b23c-10efed7f56cf]   [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+I, [2017-08-05T10:16:44.124528 #13212]  INFO -- : [c82bbc11-5909-4688-b23c-10efed7f56cf]   Rendering chat_rooms/index.html.erb within layouts/application
+D, [2017-08-05T10:16:44.128842 #13212] DEBUG -- : [c82bbc11-5909-4688-b23c-10efed7f56cf]   [1m[36mChatRoom Load (0.6ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms"[0m
+I, [2017-08-05T10:16:44.154861 #13212]  INFO -- : [c82bbc11-5909-4688-b23c-10efed7f56cf]   Rendered collection of chat_rooms/_chat_room.html.erb [1 times] (1.8ms)
+I, [2017-08-05T10:16:44.156460 #13212]  INFO -- : [c82bbc11-5909-4688-b23c-10efed7f56cf]   Rendered chat_rooms/index.html.erb within layouts/application (31.7ms)
+I, [2017-08-05T10:16:44.160660 #13212]  INFO -- : [c82bbc11-5909-4688-b23c-10efed7f56cf] Completed 200 OK in 48ms (Views: 37.7ms | ActiveRecord: 3.1ms)
+I, [2017-08-05T10:16:47.850573 #13212]  INFO -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5] Started GET "/chat_rooms/1" for 192.168.1.102 at 2017-08-05 10:16:47 +0530
+I, [2017-08-05T10:16:47.853277 #13212]  INFO -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5] Processing by ChatRoomsController#show as HTML
+I, [2017-08-05T10:16:47.853463 #13212]  INFO -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5]   Parameters: {"id"=>"1"}
+D, [2017-08-05T10:16:47.857908 #13212] DEBUG -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5]   [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+D, [2017-08-05T10:16:47.861426 #13212] DEBUG -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5]   [1m[36mChatRoom Load (0.5ms)[0m  [1m[34mSELECT  "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+D, [2017-08-05T10:16:47.890892 #13212] DEBUG -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5]   [1m[36mMessage Load (0.4ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."chat_room_id" = 1[0m
+I, [2017-08-05T10:16:47.924381 #13212]  INFO -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5]   Rendering chat_rooms/show.html.erb within layouts/application
+I, [2017-08-05T10:16:47.929386 #13212]  INFO -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5]   Rendered collection of templates [0 times] (0.0ms)
+I, [2017-08-05T10:16:47.936224 #13212]  INFO -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5]   Rendered chat_rooms/show.html.erb within layouts/application (10.4ms)
+I, [2017-08-05T10:16:47.940821 #13212]  INFO -- : [87ea41cb-d65a-4614-8da8-d4e6c57694e5] Completed 200 OK in 87ms (Views: 17.1ms | ActiveRecord: 3.7ms)
+I, [2017-08-05T10:16:53.398903 #13212]  INFO -- : [e71da5ba-087e-446f-ad74-1a103b252e46] Started POST "/chat_rooms/1" for 192.168.1.102 at 2017-08-05 10:16:53 +0530
+F, [2017-08-05T10:16:53.404357 #13212] FATAL -- : [e71da5ba-087e-446f-ad74-1a103b252e46]   
+F, [2017-08-05T10:16:53.404506 #13212] FATAL -- : [e71da5ba-087e-446f-ad74-1a103b252e46] ActionController::RoutingError (No route matches [POST] "/chat_rooms/1"):
+F, [2017-08-05T10:16:53.404575 #13212] FATAL -- : [e71da5ba-087e-446f-ad74-1a103b252e46]   
+F, [2017-08-05T10:16:53.404667 #13212] FATAL -- : [e71da5ba-087e-446f-ad74-1a103b252e46] actionpack (5.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] actionpack (5.1.3) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] railties (5.1.3) lib/rails/rack/logger.rb:36:in `call_app'
+[e71da5ba-087e-446f-ad74-1a103b252e46] railties (5.1.3) lib/rails/rack/logger.rb:24:in `block in call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+[e71da5ba-087e-446f-ad74-1a103b252e46] activesupport (5.1.3) lib/active_support/tagged_logging.rb:26:in `tagged'
+[e71da5ba-087e-446f-ad74-1a103b252e46] activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `tagged'
+[e71da5ba-087e-446f-ad74-1a103b252e46] railties (5.1.3) lib/rails/rack/logger.rb:24:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] actionpack (5.1.3) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] actionpack (5.1.3) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] activesupport (5.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] actionpack (5.1.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] actionpack (5.1.3) lib/action_dispatch/middleware/static.rb:125:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] railties (5.1.3) lib/rails/engine.rb:522:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+[e71da5ba-087e-446f-ad74-1a103b252e46] puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+[e71da5ba-087e-446f-ad74-1a103b252e46] puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+[e71da5ba-087e-446f-ad74-1a103b252e46] puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+[e71da5ba-087e-446f-ad74-1a103b252e46] puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'

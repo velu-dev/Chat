@@ -2,7 +2,7 @@
 	def show
 		@chat ||= ChatRoom.all
 	
-		render json: @chat
+		#render json: @chat
 	end
 	def edit
 		@chat ||= ChatRoom.find(params[:format])
@@ -22,9 +22,10 @@
 		@chat ||= ChatRoom.find(params[:format])
 		@chat.destroy
 		redirect_to chat_manage_show_path
-	end
+	end 
 	def profile
 		@user ||= User.find(params[:format])
+
 		@msg ||=Msg.where(to_id: params[:format])#User.find(params[:format]).msgs#.where(to_id: 7)#Msg.find_by(to_id: params[:format]).user#User.find(params[:format]).msg
 		@message = Msg.new
 	end
