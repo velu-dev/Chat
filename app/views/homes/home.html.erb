@@ -69,7 +69,11 @@
 </div>
 <div class="chat">
     <%@user.map do|ii|%>
-    <%=link_to ii.email, chat_manage_profile_path(ii.id)%><font id="chat">.</font>
+    <%if ii.email == current_user.email%>
+        <%=link_to "View My Message", chat_manage_profile_path(ii.id)%><font id="chat">.</font><br>
+        <%else%>
+    <%=link_to ii.email, chat_manage_profile_path(ii.id)%><font id="chat">.</font><br>
+    <%end%>
     <%end%>
 </div>
 </div>

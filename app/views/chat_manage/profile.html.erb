@@ -21,7 +21,7 @@
  <div class="container">
  <div class="vel">
  <div id="messages">
- <%@msg.each do|m|%>
+ <%@msg.each do|m|%> 
  <div class="card">
   <div class="card-block">
     <div class="row">
@@ -36,7 +36,7 @@
           <strong>
           <span class="text-muted">
           
-             <%=current_user.fname%> <%#= message.timestamp%> says</span><br>
+             <%=m.user.fname%> <%= m.created_at.localtime.strftime("%H:%M:%S")%> says</span><br>
           <%=m.body %>
         </p>
       </div>
@@ -55,7 +55,7 @@
     <%= f.text_area :body, class: 'form-control', :required => true%>
     <small class="text-muted">From 2 to 1000 characters</small>
   </div>
-  <%= f.submit "Post", class: 'btn btn-primary', :style=> 'float: right;'%>
+  <%= f.submit "Send", class: 'btn btn-primary', :style=> 'float: right;'%>
 <% end %>
 </div>
 </div>
