@@ -1,0 +1,26 @@
+<div id="messages">
+ <%@msg.each do|m|%>
+ <div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-1">
+      
+<%#=image_tag @profile_pic, :class=>"profile"%>
+       <%#=image_tag message.user.profile_pic.thumb, :style=> 'radius:30px;'%>
+        <%=image_tag m.user.profile_pic.thumb %>
+      </div>
+      <div class="col-md-11">
+        <p class="card-text">
+          <strong>
+          <span class="text-muted">
+          
+             <%=m.user.fname%> <%#= message.timestamp%> says</span></strong><br>
+          <%=m.body %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%end%>
+</div>

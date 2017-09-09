@@ -15,6 +15,7 @@
     <label>Email:</label><%=@user.email%><br>
     <label>Gender:</label><%=@user.gender%><br>
     <label>Mobile:</label><%=@user.mobile%><br>
+    <span>Last Seen : <%= @user.updated_at.localtime.strftime("%H:%M:%S")%></span>
 </div>
 
  </div>

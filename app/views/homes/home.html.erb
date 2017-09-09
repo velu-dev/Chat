@@ -39,44 +39,99 @@
   }
 </style>
 <div class="container">
-<div class="profile">
-<%if current_user.profile_pic.present?%>
-<%=image_tag current_user.profile_pic, :class=>"profile"%>
-<%elsif current_user.gender =="Male"%>
-<%=image_tag 'male.png', :class=>"profile"%>
-<%else%>
-<%=image_tag 'female.png', :class=>"profile"%>
+  <div class="profile">
+    <%if current_user.profile_pic.present?%>
+        <%=image_tag current_user.profile_pic, :class=>"profile_pic"%>
+    <%elsif current_user.gender =="Male"%>
+        <%=image_tag 'male.png', :class=>"profile_pic"%>
+    <%else%>
+      <%=image_tag 'female.png', :class=>"profile_pic"%>
  
 <style>
   .profile{
     border-radius: 25px;
   }
 </style>
-<%end%>
+    <%end%>
 
-<div>
-  <label><strong>Name:</strong></label>&nbsp&nbsp<%=current_user.fname%>
-</div>
-<div>
-  <label><strong>Email-ID:</strong></label>&nbsp&nbsp<i>&nbsp<%=current_user.email%></i>
-</div>
-<div>
-  <label><strong>Mobile:</strong></label>&nbsp&nbsp<%=current_user.mobile%>
-</div>
-<br>
-<%=link_to "View Profile", homes_profile_path%>
-<%=link_to "Enter Chat Room", chat_rooms_path%>
-</div>
-<div class="chat">
-    <%@user.map do|ii|%>
-    <%if ii.email == current_user.email%>
-        <%=link_to "View My Message", chat_manage_profile_path(ii.id)%><font id="chat">.</font><br>
+      <div>
+          <label><strong>Name:</strong></label>&nbsp&nbsp<%=current_user.fname%>
+      </div>
+      <div>
+          <label><strong>Email-ID:</strong></label>&nbsp&nbsp<i>&nbsp<%=current_user.email%></i>
+      </div>
+      <div>
+          <label><strong>Mobile:</strong></label>&nbsp&nbsp<%=current_user.mobile%>
+      </div>
+        <br>
+        <%=link_to "View Profile", homes_profile_path%>
+        <%=link_to "Enter Chat Room", chat_rooms_path%>
+  </div>
+
+    <div class="chat-card">
+      <%@user.map do|ii|%>
+         
+        <%if ii.email == current_user.email%>
+        <div class="_55ob">
+            <div class="_55oc">Own Messages</div>
+         </div>
+<!--             <div >
+              <%#=link_to "View My Message", chat_manage_profile_path(ii.id)%><font id="chat">.</font><br>
+            </div> -->
+            <ul>
+    <li id="js_1rg" aria-describedby="js_1rf" aria-haspopup="true" aria-controls="js_1re" data-id="100007814204732" class="_42fz">
+      <div class="_55lp">
+        <div aria-hidden="true" class="_55lq">
+          <div style="width: 34px; height: 34px;" class="_55lt" size="34">
+          <%=image_tag ii.profile_pic, :class=>"chat_profile_pic"%>
+            <!-- <img class="img" alt="" src="https://scontent.fmaa2-1.fna.fbcdn.net/v/t1.0-1/c0.0.32.32/p32x32/20294322_1969860503284404_9107159336235175244_n.jpg?oh=3edaf0548811ad32833bf728b361928d&amp;oe=5A52AB1C" height="34" width="34"> -->
+          </div>
+        </div>
+        
+        <div class="_55lr"><%=link_to ii.fname+"  " +"Messages", chat_manage_profile_path(ii.id)%></div>
+        <div class="_5bon">
+          <div class="_568z">
+        <!-- s -->
+              <span style="background: rgb(66, 183, 42) none repeat scroll 0% 0%; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span>
+          </div>
+        </div>
+        </div>
+    </li>
+  </ul>
+
         <%else%>
-    <%=link_to ii.email, chat_manage_profile_path(ii.id)%><font id="chat">.</font><br>
-    <%end%>
-    <%end%>
+  <div class="_55ob">
+      <div class="_55oc">Friends list</div>
+    </div>
+  <ul>
+    <li id="js_1rg" aria-describedby="js_1rf" aria-haspopup="true" aria-controls="js_1re" data-id="100007814204732" class="_42fz">
+      <div class="_55lp">
+        <div aria-hidden="true" class="_55lq">
+          <div style="width: 34px; height: 34px;" class="_55lt" size="34">
+          <%=image_tag ii.profile_pic, :class=>"chat_profile_pic"%>
+            <!-- <img class="img" alt="" src="https://scontent.fmaa2-1.fna.fbcdn.net/v/t1.0-1/c0.0.32.32/p32x32/20294322_1969860503284404_9107159336235175244_n.jpg?oh=3edaf0548811ad32833bf728b361928d&amp;oe=5A52AB1C" height="34" width="34"> -->
+          </div>
+        </div>
+        
+        <div class="_55lr"><%=link_to ii.fname, chat_manage_profile_path(ii.id)%></div>
+        <div class="_5bon">
+          <div class="_568z">
+        <!-- s -->
+              <span style="background: rgb(66, 183, 42) none repeat scroll 0% 0%; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span>
+          </div>
+        </div>
+        </div>
+    </li>
+  </ul>
 </div>
+<%end%>
+<%end%> 
 </div>
+
+
+
+
+
 <!-- <%#=link_to message.user.name, chat_manage_profile_path(message.user.id) %></strong>at<%#= message.timestamp%> says</span><b -->
 <style>
 .nn{
@@ -87,14 +142,28 @@
 }
   .profile{
     height:100px;
+    width: 70%;
   }
-  .chat{
+  .chat-card{
     float: right;
+    border-color: blue;
+    width: 30%;
+
   }
   #chat{
     color: green;
     font-size: 80px;
     border-radius: 20px;
   }
+  .chat_profile_pic{
+    width: 30px;
+    height:30px ;
+    border-radius: 50px;
+  }
+.profile_pic{
+
+    height: 100px;
+    width: 150px;
+}
 
 </style>

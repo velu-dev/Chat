@@ -30,13 +30,15 @@
         <%=link_to "Contact", emails_path%>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link1 nav-item dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile
         </a>
         <div class="dropdown-menu">
           <%=link_to "View Profile", homes_profile_path%><br>
           <% if user_signed_in? %>
         <%=link_to 'Log out', destroy_user_session_path, method: :delete %>
+        <%# @current_user.update(status: false)%> <span>Log out</span>
+        <%#end%>
       <% end %>
         </div>
       </li>
@@ -44,24 +46,7 @@
   </div>
 </nav>
 </div>
-  <!--div class="container">
-    <div class="logo">
-      <%=image_tag("logo1.png")%>
-      <strong>Chat App</strong>
-    </div>
-    <div class="menu">
-      <% if user_signed_in? %>
-      <strong>Welcome <%= current_user.fname %></strong>
-      <% end %>
-      <%=link_to "Home", homes_home_path%>
-      <a href=""><%=link_to "Enter Chat App", chat_rooms_path%></a>
-      <a><%=link_to "Contact", emails_path%></a>
-      <a><% if user_signed_in? %>
-        <%=link_to 'Log out', destroy_user_session_path, method: :delete %>
-      <% end %></a>
-    </div>
 
-  </div-->
 
   
     <%= yield %>
@@ -78,3 +63,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 </html>
+<style>
+  .nav-link1 {
+    display: block !important;
+    padding: -0.5em 1em !important;
+}
+.nav-item{
+  color: #292B2C !important;
+margin-right: 36px !important;
+  font-size: 18px !important;
+}
+</style>
