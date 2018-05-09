@@ -1,24 +1,11 @@
 # README
+This is a Chat application using ActionCable rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Version
 
-Things you may want to cover:
+ * ruby 2.1.0 and above
+ * rails 5.0 and above
+# Step to start
+  
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
