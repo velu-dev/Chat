@@ -13,7 +13,7 @@ This is a Chat application using ActionCable rails
   * rake db:create db:migrate
   * rails s
   
-#Demo
+# Demo
 
 [http://chatmeat.herokuapp.com/] chatmeat
 
