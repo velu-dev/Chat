@@ -9,7 +9,7 @@ This is a Chat application using ActionCable rails
   
   * git pull https://github.com/velutamil/Chat.git
   * cd Chat
-  * bundle
+  * bundle install
   * rake db:create db:migrate
   * rails s
   
