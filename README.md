@@ -7,5 +7,13 @@ This is a Chat application using ActionCable rails
  * rails 5.0 and above
 # Step to start
   
+  * git pull https://github.com/velutamil/Chat.git
+  * cd Chat
+  * bundle
+  * rake db:create db:migrate
+  * rails s
+  
+#Demo
 
+[http://chatmeat.herokuapp.com/] chatmeat
 
